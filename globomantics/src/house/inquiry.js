@@ -13,7 +13,20 @@ const Inquiry = () => {
 
     const onSubmit = (e) => {
         e.preventDefault();
-        console.log(contactInfo);
+        fetch('http://your-api-url.com/endpoint',
+        {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-Requested-With': 'XMLHttpRequest',
+            },
+            body: JSON.stringify(contactInfo),
+        })
+        .then(response => response.json())
+        .then(data => console.log(data))
+        .catch((error) => {
+            console.error('Error:', error);
+        });
     };
 
     return ( 
